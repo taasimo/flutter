@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   
   devise_for :users
   
+  resources :posts
   # define root URL
   root 'pages#index'
   # define routes for pages
