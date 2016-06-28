@@ -8,6 +8,7 @@ class PagesController < ApplicationController
   # Back-end code for pages/home
   def home
      @posts = Post.all
+       @newPost = Post.new 
   end
 
   # Back-end code for pages/profile
@@ -22,10 +23,14 @@ class PagesController < ApplicationController
   
     @posts = Post.all.where("user_id = ?", User.find_by_username(params[:id]).id)
     @newPost = Post.new 
+    
+    @toFollow = User.all.last(5)
 end
 
   # Back-end code for pages/explore
   def explore
      @posts = Post.all
+     @newPost = Post.new
+     @toFollow = User.all.last(5)
   end
 end
