@@ -2,13 +2,18 @@ Rails.application.routes.draw do
   
   
   devise_for :users
-  
+  resources :users do 
+    member do
+      get :following, :followers
+    end
+  end
+  resources :relationships, only: [:create, :destroy]
   resources :posts
   # define root URL
   root 'pages#index'
+  
+  
   # define routes for pages
-
-
   get '/home' => 'pages#home' # overrides default pages
   get '/user/:id' => 'pages#profile'
   get '/explore' => 'pages#explore'
